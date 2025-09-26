@@ -10,13 +10,14 @@ from dotenv import load_dotenv
 import os
 import re
 
+load_dotenv(override=True)
 
 
 
 host = 'sql12.freesqldatabase.com'
 port = '3306'
 username = 'sql12799932'
-password = 'fUGu1kCwiN'
+password = os.getenv('SQL_PASS')
 database_schema = 'sql12799932'
 
 my_sql_uri = f"mysql+pymysql://{username}:{password}@{host}:{port}/{database_schema}"
@@ -40,8 +41,6 @@ def get_schema(db):
     schema = db.get_table_info()
     return schema
 
-
-load_dotenv(override=True)
 
 llm = ChatGoogleGenerativeAI(
     model = 'gemini-2.0-flash',

@@ -6,18 +6,22 @@ from fastapi import FastAPI, HTTPException
 from langchain.utilities import SQLDatabase
 from sqlalchemy import create_engine, text
 import pandas as pd
+import os
 from pydantic import BaseModel
 from model.query import get_query
+from dotenv import load_dotenv
 
 from fastapi.middleware.cors import CORSMiddleware
 
 
+
+load_dotenv(override=True)
 app = FastAPI(title="MySQL Database API")
 
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # React dev server
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -30,7 +34,7 @@ app.add_middleware(
 host = 'sql12.freesqldatabase.com'
 port = '3306'
 username = 'sql12799932'
-password = 'fUGu1kCwiN'
+password = os.getenv('SQL_PASS')
 database_schema = 'sql12799932'
 
 my_sql_uri = f"mysql+pymysql://{username}:{password}@{host}:{port}/{database_schema}"
