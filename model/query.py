@@ -29,6 +29,7 @@ db = SQLDatabase.from_uri(my_sql_uri)
 #Creating LLM prompt template
 template =  """  Based on the table schema below, write a SQL query that would answer user's question:
                 Remember: Only Provide the SQL query nothing else. Give query in single line dont add line breaks.
+                Remember: If the input text is not relevant, return query to show all the tables.
                 Table Schema: {schema}
                 Question: {question}
                 SQL Query: 
@@ -66,7 +67,3 @@ def get_query(question: str):
 
     return query
 
-
-q = get_query("Find the sum of total for Walmart")
-
-print(q)

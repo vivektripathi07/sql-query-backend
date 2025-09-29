@@ -2,7 +2,7 @@
 # print(sys.executable)
 
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response
 from langchain.utilities import SQLDatabase
 from sqlalchemy import create_engine, text
 import pandas as pd
@@ -61,6 +61,10 @@ def list_tables():
 
 class QueryRequest(BaseModel):
     natural_text: str
+
+@app.options("/query")
+async def options_query():
+    return Response(status_code=200)
 
 
 @app.post("/query")
