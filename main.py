@@ -21,7 +21,7 @@ app = FastAPI(title="MySQL Database API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "https://sql-query-frontend-br5n.vercel.app/"],
+    allow_origins=["http://localhost:5173", "https://sql-query-frontend-br5n-viveks-projects-07cdf7ae.vercel.app/"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
